@@ -18,4 +18,5 @@
     <string name="app_name">Mobile Project</string>
     <string name="division_by_zero_error">Error: Division by 0</string>
     <string name="_0">0</string>
+
 </resources>
