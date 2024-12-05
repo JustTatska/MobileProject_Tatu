@@ -101,7 +101,7 @@ public class CalculatorActivity extends AppCompatActivity {
                     break;
                 case DIVIDE:
                     if (secondOperand == 0) {
-                        display.setText(getString(R.string.division_by_zero_error)); // Use string resource for error message
+                        display.setText(getString(R.string.division_by_zero_error)); 
                         return;
                     }
                     result = firstOperand / secondOperand;
