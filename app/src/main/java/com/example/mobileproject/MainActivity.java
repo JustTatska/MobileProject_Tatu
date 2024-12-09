@@ -17,5 +17,10 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, CalculatorActivity.class);
             startActivity(intent);
         });
+        Button openSearchActivityButton = findViewById(R.id.btn_open_search_activity);
+        openSearchActivityButton.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, SearchActivity.class);
+            startActivity(intent);
+        });
     }
 }
