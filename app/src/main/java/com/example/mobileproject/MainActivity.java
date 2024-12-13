@@ -22,5 +22,10 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, SearchActivity.class);
             startActivity(intent);
         });
+        Button openContactsButton = findViewById(R.id.btn_open_contacts);
+        openContactsButton.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, ContactListActivity.class);
+            startActivity(intent);
+        });
     }
 }

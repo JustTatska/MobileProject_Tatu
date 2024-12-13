@@ -23,6 +23,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
+            android:name=".ContactListActivity"
+            android:exported="false" />
+        <activity
             android:name=".SearchActivity"
             android:exported="false" />
         <activity
