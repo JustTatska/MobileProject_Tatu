@@ -1,0 +1,37 @@
+Index: app/src/main/java/com/example/mobileproject/SearchActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.mobileproject;\r\n\r\nimport android.content.Intent;\r\nimport android.net.Uri;\r\nimport android.os.Bundle;\r\nimport android.view.View;\r\nimport android.widget.Button;\r\n\r\nimport androidx.appcompat.app.AppCompatActivity;\r\n\r\npublic class SearchActivity extends AppCompatActivity {\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_search);\r\n\r\n        Button googleButton = findViewById(R.id.btn_google);\r\n        Button bingButton = findViewById(R.id.btn_bing);\r\n        Button duckDuckGoButton = findViewById(R.id.btn_duckduckgo);\r\n\r\n        googleButton.setOnClickListener(v -> openSearchEngine(\"https://www.google.com\"));\r\n        bingButton.setOnClickListener(v -> openSearchEngine(\"https://www.bing.com\"));\r\n        duckDuckGoButton.setOnClickListener(v -> openSearchEngine(\"https://www.duckduckgo.com\"));\r\n    }\r\n\r\n    private void openSearchEngine(String url) {\r\n        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));\r\n        startActivity(intent);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/mobileproject/SearchActivity.java b/app/src/main/java/com/example/mobileproject/SearchActivity.java
+--- a/app/src/main/java/com/example/mobileproject/SearchActivity.java	(revision 877c1afc00483eff728236317fb16d4151230f15)
++++ b/app/src/main/java/com/example/mobileproject/SearchActivity.java	(date 1734095922538)
+@@ -3,7 +3,6 @@
+ import android.content.Intent;
+ import android.net.Uri;
+ import android.os.Bundle;
+-import android.view.View;
+ import android.widget.Button;
+ 
+ import androidx.appcompat.app.AppCompatActivity;
+Index: app/src/main/java/com/example/mobileproject/CalculatorActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.mobileproject;\r\n\r\nimport android.os.Bundle;\r\nimport android.view.View;\r\nimport android.widget.Button;\r\nimport android.widget.TextView;\r\n\r\nimport androidx.appcompat.app.AppCompatActivity;\r\n\r\npublic class CalculatorActivity extends AppCompatActivity {\r\n    private TextView display;\r\n    private final StringBuilder currentInput = new StringBuilder();\r\n    private double firstOperand = 0;\r\n    private String operator = null;\r\n\r\n    private static final String ADD = \"+\";\r\n    private static final String SUBTRACT = \"-\";\r\n    private static final String MULTIPLY = \"×\";\r\n    private static final String DIVIDE = \"/\";\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_calculator);\r\n\r\n        display = findViewById(R.id.display);\r\n\r\n        View.OnClickListener buttonClickListener = this::onButtonClick;\r\n        int[] buttonIds = {\r\n                R.id.btn_0, R.id.btn_1, R.id.btn_2, R.id.btn_3, R.id.btn_4,\r\n                R.id.btn_5, R.id.btn_6, R.id.btn_7, R.id.btn_8, R.id.btn_9,\r\n                R.id.btn_add, R.id.btn_subtract, R.id.btn_multiply, R.id.btn_divide,\r\n                R.id.btn_equals, R.id.btn_clear\r\n        };\r\n\r\n        for (int id : buttonIds) {\r\n            findViewById(id).setOnClickListener(buttonClickListener);\r\n        }\r\n    }\r\n\r\n    private void onButtonClick(View view) {\r\n        Button button = (Button) view;\r\n        String buttonText = button.getText().toString();\r\n\r\n        switch (buttonText) {\r\n            case \"Clear\":\r\n                clear();\r\n                break;\r\n            case ADD:\r\n            case SUBTRACT:\r\n            case MULTIPLY:\r\n            case DIVIDE:\r\n                setOperator(buttonText);\r\n                break;\r\n            case \"=\":\r\n                calculateResult();\r\n                break;\r\n            default:\r\n                appendNumber(buttonText);\r\n                break;\r\n        }\r\n    }\r\n\r\n    private void clear() {\r\n        currentInput.setLength(0);\r\n        firstOperand = 0;\r\n        operator = null;\r\n        display.setText(\"0\");\r\n    }\r\n\r\n    private void setOperator(String op) {\r\n        if (currentInput.length() > 0) {\r\n            firstOperand = Double.parseDouble(currentInput.toString());\r\n            currentInput.setLength(0);\r\n        }\r\n        operator = op;\r\n    }\r\n\r\n    private void appendNumber(String number) {\r\n        if (currentInput.length() == 1 && currentInput.charAt(0) == '0') {\r\n            currentInput.setLength(0);\r\n        }\r\n        currentInput.append(number);\r\n        display.setText(currentInput.toString());\r\n    }\r\n\r\n    private void calculateResult() {\r\n        if (currentInput.length() > 0 && operator != null) {\r\n            double secondOperand = Double.parseDouble(currentInput.toString());\r\n            double result;\r\n\r\n            switch (operator) {\r\n                case ADD:\r\n                    result = firstOperand + secondOperand;\r\n                    break;\r\n                case SUBTRACT:\r\n                    result = firstOperand - secondOperand;\r\n                    break;\r\n                case MULTIPLY:\r\n                    result = firstOperand * secondOperand;\r\n                    break;\r\n                case DIVIDE:\r\n                    if (secondOperand == 0) {\r\n                        display.setText(getString(R.string.division_by_zero_error)); // Use string resource for error message\r\n                        return;\r\n                    }\r\n                    result = firstOperand / secondOperand;\r\n                    break;\r\n                default:\r\n                    return;\r\n            }\r\n\r\n            display.setText(String.valueOf(result));\r\n            currentInput.setLength(0);\r\n            firstOperand = result;\r\n            operator = null;\r\n        }\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/mobileproject/CalculatorActivity.java b/app/src/main/java/com/example/mobileproject/CalculatorActivity.java
+--- a/app/src/main/java/com/example/mobileproject/CalculatorActivity.java	(revision 877c1afc00483eff728236317fb16d4151230f15)
++++ b/app/src/main/java/com/example/mobileproject/CalculatorActivity.java	(date 1734095945753)
+@@ -101,7 +101,7 @@
+                     break;
+                 case DIVIDE:
+                     if (secondOperand == 0) {
+-                        display.setText(getString(R.string.division_by_zero_error)); // Use string resource for error message
++                        display.setText(getString(R.string.division_by_zero_error)); 
+                         return;
+                     }
+                     result = firstOperand / secondOperand;
