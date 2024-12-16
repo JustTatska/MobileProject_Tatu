@@ -1,3 +1,4 @@
+<!-- Layout for the login screen -->
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
@@ -14,6 +15,7 @@
         android:layout_marginBottom="16dp"
         android:gravity="center"/>
 
+    <!-- Username input field -->
     <EditText
         android:id="@+id/et_username"
         android:layout_width="match_parent"
@@ -22,6 +24,7 @@
         android:inputType="textPersonName"
         android:layout_marginBottom="8dp"/>
 
+    <!-- Password input field -->
     <EditText
         android:id="@+id/et_password"
         android:layout_width="match_parent"
@@ -30,6 +33,7 @@
         android:inputType="textPassword"
         android:layout_marginBottom="16dp"/>
 
+    <!-- Login button -->
     <Button
         android:id="@+id/btn_submit_login"
         android:layout_width="wrap_content"
