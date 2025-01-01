@@ -1,5 +1,4 @@
 package com.example.mobileproject;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -7,7 +6,6 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.Set;
 
 // Activity for basic calculator functionality
 public class CalculatorActivity extends AppCompatActivity {
@@ -69,7 +67,6 @@ public class CalculatorActivity extends AppCompatActivity {
                 break;
         }
     }
-
     // Clears current input
     private void clear() {
         currentInput.setLength(0);

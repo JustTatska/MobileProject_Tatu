@@ -1,5 +1,4 @@
 package com.example.mobileproject;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
